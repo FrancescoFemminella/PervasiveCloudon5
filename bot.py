@@ -4,8 +4,13 @@ from secret import bot_token
 logged_user = []
 
 def welcome(update, context):
-    msg = '''Welcome in <b>My Bot</b>'''
-    update.message.reply_text(msg, parse_mode='HTML')
+    user = update.message.from_user
+    if user['id'] not in logged_user:
+        msg = '''Welcome in <b>My Bot</b>Send password to authenticate'''
+        update.message.reply_text(msg, parse_mode='HTML')
+    else:
+        msg = '''Welcome in <b>My Bot</b>'''
+        update.message.reply_text(msg, parse_mode='HTML')
 
 def process_chat(update, context):
     print(context)
